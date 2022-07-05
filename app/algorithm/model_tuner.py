@@ -11,7 +11,6 @@ import os
 import warnings
 import sys
 from sklearn.model_selection import train_test_split
-from imblearn.over_sampling import RandomOverSampler
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
 warnings.filterwarnings('ignore') 
@@ -119,10 +118,9 @@ def tune_hyperparameters(data, data_schema, num_trials, hyper_param_path, hpt_re
         train_X, train_y = train_data['X'].astype(np.float), train_data['y'].astype(np.float)
         valid_X, valid_y = valid_data['X'].astype(np.float), valid_data['y'].astype(np.float) 
         
-        # balance the target classes  
-        over_sampler = RandomOverSampler(random_state=42)
-        train_X, train_y = over_sampler.fit_resample(train_X, train_y)
-        valid_X, valid_y = over_sampler.fit_resample(valid_X, valid_y)
+        # balance the target classes    
+        train_X, train_y = model_trainer.get_resampled_data(train_X, train_y)
+        valid_X, valid_y = model_trainer.get_resampled_data(valid_X, valid_y)
         
         """Build a model from this hyper parameter permutation and evaluate its performance"""
         # train model
