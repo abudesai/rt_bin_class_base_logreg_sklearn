@@ -16,18 +16,10 @@ MODEL_NAME = "LogisticRegression_sklearn"
 COST_THRESHOLD = float('inf')
 
 
-# class InfCostStopCallback(Callback):
-#     def on_epoch_end(self, epoch, logs={}):
-#         loss_val = logs.get('loss')
-#         if(loss_val == COST_THRESHOLD or tf.math.is_nan(loss_val)):
-#             print("Cost is inf, so stopping training!!")
-#             self.model.stop_training = True
-
 
 class LogisticRegression_sklearn(): 
     
     def __init__(self, penalty="l2", C = 1.0, max_iter = 100, l1_ratio = None, **kwargs) -> None:
-        super(LogisticRegression_sklearn, self).__init__(**kwargs)
         self.penalty = penalty
         self.C = np.float(C)
         self.max_iter = int(max_iter) 
