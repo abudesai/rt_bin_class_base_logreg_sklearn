@@ -11,18 +11,18 @@ from sklearn.linear_model import LogisticRegression
 
 
 model_fname = "model.save"
-MODEL_NAME = "LogisticRegression_sklearn"
+
+MODEL_NAME = "bin_class_base_logistic_regression_sklearn"
 
 COST_THRESHOLD = float('inf')
 
 
 
-class LogisticRegression_sklearn(): 
+class Classifier(): 
     
-    def __init__(self, penalty="l2", C = 1.0, max_iter = 100, l1_ratio = None, **kwargs) -> None:
+    def __init__(self, penalty="elasticnet", C = 1.0, l1_ratio=0.5, **kwargs) -> None:
         self.penalty = penalty
         self.C = np.float(C)
-        self.max_iter = int(max_iter) 
         if self.penalty == 'elasticnet':
             self.l1_ratio = l1_ratio if l1_ratio is not None and 0 <= l1_ratio <= 1 else 0.5
         else: 
@@ -31,7 +31,7 @@ class LogisticRegression_sklearn():
         
         
     def build_model(self): 
-        model = LogisticRegression(penalty = self.penalty, C = self.C, max_iter = self.max_iter, solver='saga', l1_ratio=self.l1_ratio)
+        model = LogisticRegression(penalty = self.penalty, C = self.C, solver='saga', l1_ratio=self.l1_ratio)
         return model
     
     
@@ -55,7 +55,7 @@ class LogisticRegression_sklearn():
 
     
     def save(self, model_path): 
-        joblib.dump(self.model, os.path.join(model_path, model_fname))
+        joblib.dump(self, os.path.join(model_path, model_fname))
         
 
 

@@ -9,7 +9,7 @@ from sklearn.utils import shuffle
 import algorithm.preprocessing.pipeline as pp_pipe
 import algorithm.preprocessing.preprocess_utils as pp_utils
 import algorithm.utils as utils
-from algorithm.model.logistic_regression import LogisticRegression_sklearn
+from algorithm.model.classifier import Classifier
 from algorithm.utils import get_model_config
 
 
@@ -50,7 +50,7 @@ def train_model(train_X, train_y, hyper_params):
     model_params = {**hyper_params }
     
     # Create and train model   
-    model = LogisticRegression_sklearn(  **model_params )  
+    model = Classifier(  **model_params )  
     # model.summary()  
     model.fit(train_X, train_y)
     #print("last_loss:", history.history['loss'][-1])

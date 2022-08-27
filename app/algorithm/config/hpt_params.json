@@ -18,16 +18,6 @@
     "run_HPO": true
   },
   {
-    "name": "max_iter",
-    "short_desc": "Maximum number of iterations taken for the solvers to converge.",
-    "default": 100,
-    "type": "int",
-    "search_type": "uniform",
-    "range_low": 100,
-    "range_high": 500,
-    "run_HPO": true
-  },
-  {
     "name": "l1_ratio",
     "short_desc": "The Elastic-Net mixing parameter, with 0 <= l1_ratio <= 1. Only used if penalty='elasticnet'",
     "default": 0.5,
